@@ -1,6 +1,7 @@
 version: "3.8"
 services:
-  scheduler:
+  nudge_cronjob_image:
     build: .
-    container_name: two_tower_scheduler
+    container_name: nudge_cronjob
+    image: johedotcom/nudge-cronjob-repository:latest
     restart: always
