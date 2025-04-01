@@ -108,6 +108,10 @@ def run_pipeline():
         results_df["user_id"] == "db712ce7-4268-440c-a6be-95c7ab2a69bc"
     ][['user_id', 'product_id', 'product_title', 'score', 'predicted_class', 'risklevel', 'framingeffect', 'lossaversion']].drop_duplicates('product_id')
 
+    # Delete all rows from the table
+    supabase.table("temp_ik_resultsnudgetwscore").delete().neq("user_id", "").execute()
+    print("Existing records deleted from temp_ik_resultsnudgetwscore.")
+
     # Upload to Supabase
     records_to_insert = results_df.to_dict(orient="records")
     supabase.table("temp_ik_resultsnudgetwscore").insert(records_to_insert).execute()
