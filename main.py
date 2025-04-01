@@ -103,10 +103,6 @@ def run_pipeline():
     # Merge product info
     results_df = results_df.merge(df_products, on="product_id", how="left")
 
-    # Save to CSV
-    results_df.to_csv("results_nudgetw_score.csv", index=False)
-    print("✅ Prediction results saved to CSV.")
-
     # Optional: filter for a specific user
     filtered_results = results_df[
         results_df["user_id"] == "db712ce7-4268-440c-a6be-95c7ab2a69bc"
@@ -121,7 +117,7 @@ def run_pipeline():
 run_pipeline()
 
 # Jadwalkan fungsi run_pipeline() menggunakan schedule
-schedule.every(120).seconds.do(run_pipeline)
+schedule.every(60).seconds.do(run_pipeline)
 
 print("Scheduler berjalan. Menunggu jadwal eksekusi...")
 
